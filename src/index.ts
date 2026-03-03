@@ -37,32 +37,30 @@ const agent = await createAgent({
 const { app, addEntrypoint } = await createAgentApp(agent);
 
 addEntrypoint({
-  id: 'extract-url',
-  name: 'Extract PDF from URL',
+  key: 'extract-url',
   description: 'Fetches a PDF from the given URL and extracts its text content, page information, and metadata.',
-  price: '$0.003',
+  price: '0.003',
   input: z.object({
     url: z.string().url().describe('The URL of the PDF to extract text from'),
   }),
   output: ExtractionOutputSchema,
-  handler: async ({ input }) => {
-    const result = await extractFromUrl(input.url);
-    return result;
+  handler: async (ctx) => {
+    const result = await extractFromUrl(ctx.input.url);
+    return { output: result };
   },
 });
 
 addEntrypoint({
-  id: 'extract-base64',
-  name: 'Extract PDF from Base64',
+  key: 'extract-base64',
   description: 'Decodes a base64-encoded PDF and extracts its text content, page information, and metadata.',
-  price: '$0.003',
+  price: '0.003',
   input: z.object({
     base64: z.string().describe('The base64-encoded PDF content'),
   }),
   output: ExtractionOutputSchema,
-  handler: async ({ input }) => {
-    const result = await extractFromBase64(input.base64);
-    return result;
+  handler: async (ctx) => {
+    const result = await extractFromBase64(ctx.input.base64);
+    return { output: result };
   },
 });
 
