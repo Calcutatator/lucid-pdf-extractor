@@ -1,0 +1,22 @@
+{
+  "name": "lucid-pdf-extractor",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@lucid-agents/core": "latest",
+    "@lucid-agents/http": "latest",
+    "@lucid-agents/payments": "latest",
+    "@lucid-agents/hono": "latest",
+    "hono": "^4.0.0",
+    "zod": "^3.23.0",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
